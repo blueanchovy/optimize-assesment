@@ -1,37 +1,43 @@
-# Frontend Assignment: Landing site Optimization
-
-## Task
-
-You're given a simple landing website. Written in Next.js, using TypeScript.
-
-The website has:
-
-- landing page
-- demo page
-- blog
-- gallery
-- pricing
-
-Your task is to **optimize performance and fix any issues you find** while preserving the functionality. You are free to identify any bugs through out the project and apply any optimizations you see fit
-
----
-
-## Submission
-
-Please submit a GitHub repo or ZIP file with:
-
-- Your updated working code (npm install; npm run build; npm start)
-- An accompanying PDF file or readme explaining all the changes you did in Where/What/Why format
-
-**[Bonus]** Deploy the site to a free platform (e.g., Netlify, Vercel, Render) and share the live link.
-
-## Example of Changes Documentation
-
-### Where/What/Why Format Example:
-
-1. **Where**: `src/pages/blog/[slug].tsx`
-2. **What**: Added dynamic imports for blog content
-3. **Why**: To reduce initial bundle size and improve First Contentful Paint (FCP)
-4. **Reference**: Documentation URL (optional)
-
----
+1. Font Optimization
+Where: app/layout.tsx
+What: Replaced Google Fonts massive import with Next.js font optimization
+Why: Reduced layout shifts (CLS), improved page load performance, and eliminated render-blocking resources
+2. Component Code Splitting
+Where: app/page.tsx
+What: Implemented dynamic imports for non-critical components
+Why: more optimized load 
+3. Image Optimization
+Where: Multiple components (Gallery.tsx, BlogPostCard.tsx, GeneratedImage.tsx)
+What: Replaced standard <img> tags with Next.js <Image> component
+Why: Added automatic image optimization, proper sizing, and modern formats
+4. Data Fetching Optimization
+Where: app/gallery/page.tsx
+What: Implemented pagination and optimized the image loading
+Why: Reduced initial data fetch from 80 images to 20, with progressive loading
+5. Server Component & Static Generation
+Where: app/blog/page.tsx
+What: Converted to a server component with static generation
+Why: Improved SEO and performance by pre-rendering content
+6. Performance-Optimized Components
+Where: app/components/FontShowcase.tsx, app/components/PromptInput.tsx
+What: Implemented memoization, debouncing, and lazy loading
+Why: Reduced unnecessary re-renders and improved user interaction responsiveness
+7. Next.js Configuration
+Where: next.config.js
+What: Added  configuration for image optimization, caching, and bundle optimization
+Why: Improved overall site performance, search engine optimization, and user experience
+8. Multiple Config Files
+Where: Root of the directory
+What: Remove multiple redundant config files like next.config.mjs and postcss.config.mjs
+Why: Multiple config files may cause confusion to both the developer and compiler/bundler
+9. Gallery Images Fetching
+Where: Gallery page
+What: Added pexels api key and implemented proper fetching of gallery images, also made it mobile responsive
+10. Updated AppBar/Header
+Where: Appbar.tsx
+What: Added missing menu items, implemented hamburger menu for mobile devices and updated styling 
+Why: To make it more user friendly
+11. Pricing page styling
+Where: Pricing page
+What: Updated pricing cards layout from flex to grid
+Why: To display hidden pricing cards because of incorrect layout
