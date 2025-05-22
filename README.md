@@ -41,3 +41,7 @@ Why: To make it more user friendly
 Where: Pricing page
 What: Updated pricing cards layout from flex to grid
 Why: To display hidden pricing cards because of incorrect layout
+12. Input Areas Styling
+Where: PromptInput.tsx , Newsletter.tsx
+What: Updated styling of input areas
+Why: The font color and other styling was inconsistent with the rest of the page
