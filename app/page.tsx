@@ -1,7 +1,19 @@
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import Hero from "./components/Hero";
-import Features from "./components/Features";
-import Gallery from "./components/Gallery";
-import FontShowcase from "./components/FontShowcase";
+
+// Dynamically import components 
+const Features = dynamic(() => import('./components/Features'), {
+  ssr: true,
+});
+
+const FontShowcase = dynamic(() => import('./components/FontShowcase'), {
+  ssr: false,
+});
+
+const Gallery = dynamic(() => import('./components/Gallery'), {
+  ssr: true,
+});
 
 const features = [
   {
@@ -21,13 +33,27 @@ const features = [
   },
 ];
 
+const LoadingFallback = ({ className = "" }: { className?: string }) => (
+  <div className={`py-20 ${className}`}>
+    <div className="container mx-auto px-4">
+      <div className="h-60 bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg"></div>
+    </div>
+  </div>
+);
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
-      <Features features={features} />
-      <FontShowcase />
-      <Gallery />
+      <Suspense fallback={<LoadingFallback className="bg-white dark:bg-gray-900" />}>
+        <Features features={features} />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback className="bg-gray-50 dark:bg-gray-800" />}>
+        <FontShowcase />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback className="bg-gray-50 dark:bg-gray-800" />}>
+        <Gallery />
+      </Suspense>
     </div>
   );
 }

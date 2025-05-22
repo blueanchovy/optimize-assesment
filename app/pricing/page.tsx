@@ -10,8 +10,8 @@ export default function Pricing() {
         <p className="text-center text-gray-600 dark:text-gray-300 mb-12">
           Choose the plan that's right for you
         </p>
-
-        <div className="flex overflow-hidden gap-8 max-w-5xl mx-auto">
+        {/* changed layout from flex to grid to properly display all pricing cards which were getting cut off */}
+        <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {plans.map((plan) => (
             <div
               className="min-w-[250px] bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col"
